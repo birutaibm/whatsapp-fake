@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { MdDone, MdDoneAll } from 'react-icons/md';
 import { GoClock } from "react-icons/go";
 
+import { consumed, gray } from '../colors';
+
 const Container = styled.span`
   color: ${props => props.color};
   font-size: 10px;
@@ -10,31 +12,26 @@ const Container = styled.span`
   margin-right: 1px;
   margin-top: 1px;
   float: right;
-
-  svg {
-    fill: ${props => props.color};
-  };
-
-  .read svg {
-    fill: blue;
+  span {
+    color: ${props => props.read ? consumed : props.color};
+    svg {
+      fill: ${props => props.read ? consumed : props.color};
+    }
   }
 `;
-const icons = {
-  sending: (<GoClock size={10} />),
-  send: (<MdDone size={10} />),
-  deliver: (<MdDoneAll size={10} />),
-  read: (<MdDoneAll size={10} />),
-};
 
-export default function MessageFooter({ time, status='', color='#666'}) {
+export default function MessageFooter({ time, status='', color=gray}) {
+  const icons = {
+    sending: (<GoClock size={10} fill={color} />),
+    send: (<MdDone size={10} fill={color} />),
+    deliver: (<MdDoneAll size={10} fill={color} />),
+    read: (<MdDoneAll size={10} fill={consumed} />),
+  };
   const icon = icons[status] || null;
-  status = icon ? 
-      (<span className={status}>{icon}</span>) : 
-      null;
 
   return (
-    <Container color={color}>
-      {time} {status}
+    <Container color={color} read={status==='read'}>
+      {time} <span>{icon}</span>
     </Container>
   );
 }

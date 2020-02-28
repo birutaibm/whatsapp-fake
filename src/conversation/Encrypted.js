@@ -1,8 +1,15 @@
 import React from 'react';
 import { FaLock } from "react-icons/fa";
+import styled from 'styled-components';
 
-// import { Container } from './styles';
-import './Encrypted.css';
+import { yellowBox, yellowText } from '../colors';
+import {Container as Base} from './Style';
+
+const Container = styled(Base)`
+  background-color: ${yellowBox};
+  color: ${yellowText};
+  text-align: center;
+`;
 
 export default function Encrypted({type}) {
   const values = {
@@ -10,6 +17,6 @@ export default function Encrypted({type}) {
     group: 'As mensagens enviadas a este grupo agora estão protegidas com a criptografia de ponta a ponta. Toque para obter mais informações.',
   };
   return (
-    <div className="encrypted"><FaLock size={10}/> {values[type]}</div>
+    <Container><FaLock size={10} fill={yellowText}/> {values[type]}</Container>
   );
 }

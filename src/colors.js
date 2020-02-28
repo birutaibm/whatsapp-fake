@@ -1,0 +1,15 @@
+module.exports = {
+  light: '#fff',
+  lightGray: '#999',
+  gray: '#666',
+  darkGray: '#333',
+  dark: '#000',
+  consumed: '#00f',
+  myBackground: '#e2ffc7',
+  otherBackground: '#fff',
+  headerBackground: '#075e55',
+  yellowBox: '#fff5c4',
+  yellowText: '#8c846d',
+  blueBox: '#d3ebf5',
+  blueText: '#404e5b',
+}

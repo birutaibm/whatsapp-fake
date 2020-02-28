@@ -3,7 +3,9 @@ import styled from 'styled-components';
 import { MdKeyboardVoice } from "react-icons/md";
 import { FaPlay } from "react-icons/fa";
 
+import { gray, lightGray, consumed } from '../colors';
 import MessageFooter from './MessageFooter';
+import Logo from '../Components/Logo';
 
 const Container = styled.div`
   display: flex;
@@ -19,15 +21,17 @@ const Container = styled.div`
       position: absolute;
       bottom: 0px;
       right: 0px;
+      color: ${props => props.listened ? consumed : gray};
       svg {
-        fill: ${props => props.listened ? 'blue' : '#666'};
+        fill: ${props => props.listened ? consumed : gray};
       }
     }
   }
   .controll {
     margin: 10px;
+    color: ${gray};
     svg {
-      fill: #666;
+      fill: ${gray};
     }
   }
   .content {
@@ -40,7 +44,7 @@ const Container = styled.div`
       align-items: center;
       justify-content: space-between;
       div {
-        color: #666;
+        color: ${gray};
         font-size: 10px;
       }
     }
@@ -55,19 +59,22 @@ export default function AudioMessage({audio, time, status}) {
     status = 'read';
   }
 
+  const speakerColor = audio.listened ? consumed : gray;
   return (
     <Container listened={audio.listened}>
       <div className="person">
-        <img className="logo" src="/img/person.png" alt=""/>
-        <span><MdKeyboardVoice size={15} /></span>
+        <Logo />
+        <span>
+          <MdKeyboardVoice size={15} fill={speakerColor} />
+        </span>
       </div>
-      <div className="controll"><FaPlay size={20} /></div>
+      <div className="controll"><FaPlay size={20} fill={gray} /></div>
       <div className="content">
         <div></div>
         <div>
           <svg height="10px" width="100%">
-            <line x1="0" x2="100%" y1="50%" y2="50%" strokeWidth="2" stroke="#999"/>
-            <circle cx="5" cy="5" r="5" fill="#666" />
+            <line x1="0" x2="100%" y1="50%" y2="50%" strokeWidth="2" stroke={lightGray}/>
+            <circle cx="5" cy="5" r="5" fill={gray} />
           </svg>
         </div>
         <div>

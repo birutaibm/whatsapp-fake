@@ -1,12 +1,20 @@
 import React from 'react';
+import styled from 'styled-components';
 
-// import { Container } from './styles';
-import './MyMessage.css';
+import Message from './Message';
 import AudioMessage from './AudioMessage';
 import TextMessage from './TextMessage';
 import ImageMessage from './ImageMessage';
 
-export default function MyMessage({value=[]}) {
+const Container = styled.div`
+  max-width: 75%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+`;
+
+export default function Messages({author='myself', value=[]}) {
 
   function renderMessage(message={}, key) {
     let content = null;
@@ -33,21 +41,15 @@ export default function MyMessage({value=[]}) {
     }
 
     return (
-      <div className="my-message" key={key}>
+      <Message author={author} key={key} first={key === 0}>
         {content}
-      </div>
+      </Message>
     );
   }
 
   return (
-    <div className="my-messages-container">
-      <div className="my-messages">
-        {value.map(renderMessage)}
-      </div>
-      <svg width={10} height={10}>
-        <line x1='0' x2='10' y1='10' y2='0' stroke='rgba(0, 0, 0, 0.3)' strokeWidth={2} />
-        <polygon points="-2,0 10,0 -2,12" />
-      </svg>
-    </div>
+    <Container>
+      {value.map(renderMessage)}
+    </Container>
   );
 }

@@ -1,6 +1,7 @@
 import React, {Fragment} from 'react';
 import styled from 'styled-components';
 
+import { dark, light } from '../colors';
 import TextMessage from './TextMessage';
 import MessageFooter from './MessageFooter';
 
@@ -44,9 +45,9 @@ export default function ImageMessage({message}) {
       <div className="image-cover">
         <svg width="100%" height="100%">
           <defs>
-          <radialGradient id="grad1" cx="100%" cy="100%" r="50%">
-            <stop offset="0%" style={{stopColor:'rgb(0,0,0)',stopOpacity:0.5}} />
-            <stop offset="100%" style={{stopColor:'rgb(0,0,0)',stopOpacity:0}} />
+          <radialGradient id="grad1" cx="85%" cy="95%" r="30%">
+            <stop offset="0%" style={{stopColor:dark,stopOpacity:0.5}} />
+            <stop offset="100%" style={{stopColor:dark,stopOpacity:0}} />
           </radialGradient>
           </defs>
           <rect x='0' y='0' width="100%" height="100%" fill="url(#grad1)" />
@@ -54,7 +55,7 @@ export default function ImageMessage({message}) {
       </div>
       <div className="absolute">
         <MessageFooter 
-          color="#fff"
+          color={light}
           time={message.time}
           status={message.status}
         />
